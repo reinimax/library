@@ -51,12 +51,26 @@ function displayLibrary(from) {
       const cardRemove = document.createElement("button");
         cardRemove.textContent = "Remove book";
         cardRemove.setAttribute("id", "remove-btn");
+        cardRemove.setAttribute("data-index", i);
+        cardRemove.addEventListener("click", function(e) {
+          updateLibrary(e);
+        });
     card.appendChild(cardAuthor);
     card.appendChild(cardTitle);
     card.appendChild(cardPages);
     card.appendChild(cardRead);
     card.appendChild(cardRemove);
     container.appendChild(card);
+  }
+}
+
+function updateLibrary(e) {
+  const index = e.target.dataset.index;
+  library.splice(index,1);
+  container.removeChild(container.childNodes[index]);
+  //reset data-indices
+  for (let i = 0; i < container.childElementCount; i++) {
+    container.childNodes[i].childNodes[4].setAttribute("data-index", i);
   }
 }
 
