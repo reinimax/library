@@ -32,6 +32,29 @@ function addBook() {
 
 const hobbit = new Book("J.R.R. Tolkien", "The Hobbit", 300, true);
 library.push(hobbit);
+library.push(hobbit);
+library.push(hobbit);
 console.log(hobbit.info());
+
+/*cardstyle
+  create a div
+  inside the div display stuff
+*/
+
+const container = document.querySelector("#container");
+
+for (let i = 0; i < library.length; i++) {
+  const card = document.createElement("div");
+    const cardAuthor = document.createElement("div");
+    cardAuthor.textContent = library[i].author;
+    const cardTitle = document.createElement("div");
+    cardTitle.textContent = library[i].title;
+  card.appendChild(cardAuthor);
+  card.appendChild(cardTitle);
+  container.appendChild(card);
+}
+
+
+
 
 
