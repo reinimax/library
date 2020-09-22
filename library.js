@@ -26,6 +26,7 @@ function addBook() {
     read.checked
   );
   library.push(newBook);
+  displayLibrary(library.length-1);
 }
 
 const hobbit = new Book("J.R.R. Tolkien", "The Hobbit but maybe this is also a very very long title", 300, true);
@@ -33,8 +34,8 @@ library.push(hobbit);
 library.push(hobbit);
 library.push(hobbit);
 
-function displayLibrary() {
-  for (let i = 0; i < library.length; i++) {
+function displayLibrary(from) {
+  for (let i = from; i < library.length; i++) {
     const card = document.createElement("div");
     card.style.cssText = `
       border: solid 1px black;
@@ -86,7 +87,7 @@ function displayLibrary() {
   }
 }
 
-displayLibrary();
+displayLibrary(0);
 
 
 
