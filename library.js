@@ -3,6 +3,7 @@ let library = [];
 
 //variables
 const addBtn = document.querySelector("#addBtn");
+const container = document.querySelector("#container");
 const author = document.querySelector("#author");
 const title = document.querySelector("#title");
 const pages = document.querySelector("#pages");
@@ -15,9 +16,6 @@ function Book(author, title, pages, read) {
     this.title = title;
     this.pages = pages;
     this.read = read;
-    this.info = function() {
-      return `${this.title} by ${this.author}, ${this.pages} pages, ${(this.read) ? "already read" : "not yet read"}`;
-    }
   }
 
 function addBook() {
@@ -34,41 +32,61 @@ const hobbit = new Book("J.R.R. Tolkien", "The Hobbit but maybe this is also a v
 library.push(hobbit);
 library.push(hobbit);
 library.push(hobbit);
-console.log(hobbit.info());
 
-/*cardstyle
-  create a div
-  inside the div display stuff
-*/
-
-const container = document.querySelector("#container");
-
-for (let i = 0; i < library.length; i++) {
-  const card = document.createElement("div");
-  card.style.cssText = `
-    border: solid 1px black;
-    border-radius: 10px; 
-    margin: 30px; 
-    padding: 20px;
-    width: 150px;
-    height: 250px;
-  `;
-    const cardAuthor = document.createElement("div");
-    cardAuthor.textContent = library[i].author;
-    cardAuthor.style.cssText = `
-      text-align: center;
-      margin-bottom: 15px;
+function displayLibrary() {
+  for (let i = 0; i < library.length; i++) {
+    const card = document.createElement("div");
+    card.style.cssText = `
+      border: solid 1px black;
+      border-radius: 10px; 
+      margin: 30px; 
+      padding: 20px;
+      width: 150px;
+      height: 250px;
     `;
-    const cardTitle = document.createElement("div");
-    cardTitle.textContent = library[i].title;
-    cardTitle.style.cssText = `
-      text-align: center;
-      margin-bottom: 15px;
-    `;
-  card.appendChild(cardAuthor);
-  card.appendChild(cardTitle);
-  container.appendChild(card);
+      const cardAuthor = document.createElement("div");
+      cardAuthor.textContent = library[i].author;
+      cardAuthor.style.cssText = `
+        text-align: center;
+        margin-bottom: 15px;
+      `;
+      const cardTitle = document.createElement("div");
+      cardTitle.textContent = library[i].title;
+      cardTitle.style.cssText = `
+        text-align: center;
+        margin-bottom: 15px;
+      `;
+      const cardPages = document.createElement("div");
+      cardPages.textContent = "Pages: " + library[i].pages;
+      cardPages.style.cssText = `
+        text-align: center;
+        margin-bottom: 15px;
+      `;
+      const cardRead = document.createElement("button");
+      cardRead.textContent = (library[i].read) ? "Read" : "Not read";
+      cardRead.style.cssText = `
+        background-color: transparent;
+        border: none;
+        width: 80px;
+        margin-left: 35px;
+        margin-bottom: 15px;
+      `;
+      const cardRemove = document.createElement("button");
+      cardRemove.textContent = "Remove book";
+      cardRemove.style.cssText = `
+        width: 120px;
+        margin-left: 15px;
+      `;
+    card.appendChild(cardAuthor);
+    card.appendChild(cardTitle);
+    card.appendChild(cardPages);
+    card.appendChild(cardRead);
+    card.appendChild(cardRemove);
+    container.appendChild(card);
+  }
 }
+
+displayLibrary();
 
 
 
