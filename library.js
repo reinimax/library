@@ -37,47 +37,22 @@ library.push(hobbit);
 function displayLibrary(from) {
   for (let i = from; i < library.length; i++) {
     const card = document.createElement("div");
-    card.style.cssText = `
-      border: solid 1px black;
-      border-radius: 10px; 
-      margin: 30px; 
-      padding: 20px;
-      width: 150px;
-      height: 250px;
-    `;
+    card.setAttribute("class", "card");
       const cardAuthor = document.createElement("div");
-      cardAuthor.textContent = library[i].author;
-      cardAuthor.style.cssText = `
-        text-align: center;
-        margin-bottom: 15px;
-      `;
+        cardAuthor.textContent = library[i].author;
+        cardAuthor.setAttribute("class", "card-content");
       const cardTitle = document.createElement("div");
-      cardTitle.textContent = library[i].title;
-      cardTitle.style.cssText = `
-        text-align: center;
-        margin-bottom: 15px;
-      `;
+        cardTitle.textContent = library[i].title;
+        cardTitle.setAttribute("class", "card-content");
       const cardPages = document.createElement("div");
-      cardPages.textContent = "Pages: " + library[i].pages;
-      cardPages.style.cssText = `
-        text-align: center;
-        margin-bottom: 15px;
-      `;
+        cardPages.textContent = "Pages: " + library[i].pages;
+        cardPages.setAttribute("class", "card-content");
       const cardRead = document.createElement("button");
-      cardRead.textContent = (library[i].read) ? "Read" : "Not read";
-      cardRead.style.cssText = `
-        background-color: transparent;
-        border: none;
-        width: 80px;
-        margin-left: 35px;
-        margin-bottom: 15px;
-      `;
+        cardRead.textContent = (library[i].read) ? "Read" : "Not read";
+        cardRead.setAttribute("id", "toggle-read");
       const cardRemove = document.createElement("button");
-      cardRemove.textContent = "Remove book";
-      cardRemove.style.cssText = `
-        width: 120px;
-        margin-left: 15px;
-      `;
+        cardRemove.textContent = "Remove book";
+        cardRemove.setAttribute("id", "remove-btn");
     card.appendChild(cardAuthor);
     card.appendChild(cardTitle);
     card.appendChild(cardPages);

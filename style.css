@@ -3,3 +3,30 @@
     width: 90vw;
     flex-wrap: wrap;
 }
+
+.card {
+    border: solid 1px black;
+    border-radius: 10px; 
+    margin: 30px; 
+    padding: 20px;
+    width: 150px;
+    height: 250px;
+}
+
+.card-content {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#toggle-read {
+    background-color: transparent;
+    border: none;
+    width: 80px;
+    margin-left: 35px;
+    margin-bottom: 15px;
+}
+
+#remove-btn {
+    width: 120px;
+    margin-left: 15px;
+}
