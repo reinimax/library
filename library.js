@@ -1,5 +1,8 @@
 //in this array the books will be stored
-let library = [];
+let library = [
+  new Book("J.R.R. Tolkien", "The Hobbit", 300, true),
+  new Book("Andrzej Sapkowski", "The Last Wish", 350, true)
+];
 
 //variables
 const addBtn = document.querySelector("#addBtn");
@@ -29,11 +32,6 @@ function addBook() {
   displayLibrary(library.length-1);
 }
 
-const hobbit = new Book("J.R.R. Tolkien", "The Hobbit but maybe this is also a very very long title", 300, true);
-library.push(hobbit);
-library.push(hobbit);
-library.push(hobbit);
-
 function displayLibrary(from) {
   for (let i = from; i < library.length; i++) {
     const card = document.createElement("div");
@@ -62,6 +60,7 @@ function displayLibrary(from) {
   }
 }
 
+//draw initial library
 displayLibrary(0);
 
 
