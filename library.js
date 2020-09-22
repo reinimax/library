@@ -30,7 +30,7 @@ function addBook() {
   library.push(newBook);
 }
 
-const hobbit = new Book("J.R.R. Tolkien", "The Hobbit", 300, true);
+const hobbit = new Book("J.R.R. Tolkien", "The Hobbit but maybe this is also a very very long title", 300, true);
 library.push(hobbit);
 library.push(hobbit);
 library.push(hobbit);
@@ -45,10 +45,26 @@ const container = document.querySelector("#container");
 
 for (let i = 0; i < library.length; i++) {
   const card = document.createElement("div");
+  card.style.cssText = `
+    border: solid 1px black;
+    border-radius: 10px; 
+    margin: 30px; 
+    padding: 20px;
+    width: 150px;
+    height: 250px;
+  `;
     const cardAuthor = document.createElement("div");
     cardAuthor.textContent = library[i].author;
+    cardAuthor.style.cssText = `
+      text-align: center;
+      margin-bottom: 15px;
+    `;
     const cardTitle = document.createElement("div");
     cardTitle.textContent = library[i].title;
+    cardTitle.style.cssText = `
+      text-align: center;
+      margin-bottom: 15px;
+    `;
   card.appendChild(cardAuthor);
   card.appendChild(cardTitle);
   container.appendChild(card);
