@@ -26,10 +26,9 @@ Book.prototype.toggleRead = function() {
 }
 
 //local storage
-let storage = window.localStorage;
-
-//if storage is not available, display an according message
+let storage; 
 try {
+  storage = window.localStorage;
   storage.setItem("test", "Can retrieve data from local storage");
   console.log(storage.getItem("test"));
   storage.removeItem("test");
