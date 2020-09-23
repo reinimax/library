@@ -58,7 +58,7 @@ function saveLibrary() {
 
 function retrieveLibrary() {
   if (storageAvailable) {
-    //clear the library if the storage is shorter, so that only the storage and now sample books are displayed
+    //clear the library if the storage is shorter, so that only the storage and not sample books are displayed
     if (storage.length > 0 && storage.length < library.length) library = []; 
     //turning the string back into an array with objects (if storage is empty the loop won't execute and so the original sample library will be drawn)
     for (let j = 0; j < storage.length; j++) {
