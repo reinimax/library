@@ -26,9 +26,8 @@ Book.prototype.toggleRead = function() {
 }
 
 //local storage
-let storage; 
 try {
-  storage = window.localStorage;
+  var storage = window.localStorage; //using var here, because let and const have block scope and var hasn't
   storage.setItem("test", "Can retrieve data from local storage");
   console.log(storage.getItem("test"));
   storage.removeItem("test");
