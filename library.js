@@ -42,7 +42,8 @@ function retrieveLibrary() {
     let recoverReadStatus = (storageArray[3] === "true") ? true : false;
     library[j] = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
   }
-  console.table(library);
+  //draw library from the beginning
+  displayLibrary(0);
 }
 
 
@@ -134,10 +135,4 @@ function updateLibrary(e) {
   }
 }
 
-//draw initial library
-displayLibrary(0);
-
-
-
-
-
+retrieveLibrary();
