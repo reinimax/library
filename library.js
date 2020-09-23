@@ -26,6 +26,8 @@ Book.prototype.toggleRead = function() {
 }
 
 //local storage
+let storageAvailable = true;
+
 try {
   var storage = window.localStorage; //using var here, because let and const have block scope and var hasn't
   storage.setItem("test", "Can retrieve data from local storage");
@@ -33,34 +35,37 @@ try {
   storage.removeItem("test");
 } catch {
   console.log("Storage not availabe");
+  storageAvailable = false;
 }
 
 //events
 addBtn.addEventListener("click", addBook);
 clearStorageBtn.addEventListener("click", function() {
-  storage.clear();
-  console.log(storage);
-  console.log(storage.length);
+  if (storageAvailable) storage.clear();
 });
 
 //functions
 function saveLibrary() {
   //turning the array into a string and saving it in storage
-  storage.clear(); //The storage is cleared first to prevent elements sticking to the end when books are deleted
-  for (let i = 0; i < library.length; i++) {
-    let objString = Object.values(library[i]);
-    storage.setItem(`library${i}`, objString);
+  if (storageAvailable) {
+    storage.clear(); //The storage is cleared first to prevent elements sticking to the end when books are deleted
+    for (let i = 0; i < library.length; i++) {
+      let objString = Object.values(library[i]);
+      storage.setItem(`library${i}`, objString);
+    }
   }
 }
 
 function retrieveLibrary() {
-  //clear the library if the storage is shorter, so that only the storage and now sample books are displayed
-  if (storage.length > 0 && storage.length < library.length) library = []; 
-  //turning the string back into an array with objects (if storage is empty the loop won't execute and so the original sample library will be drawn)
-  for (let j = 0; j < storage.length; j++) {
-    let storageArray = storage.getItem(`library${j}`).split(",");
-    let recoverReadStatus = (storageArray[3] === "true") ? true : false;
-    library[j] = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
+  if (storageAvailable) {
+    //clear the library if the storage is shorter, so that only the storage and now sample books are displayed
+    if (storage.length > 0 && storage.length < library.length) library = []; 
+    //turning the string back into an array with objects (if storage is empty the loop won't execute and so the original sample library will be drawn)
+    for (let j = 0; j < storage.length; j++) {
+      let storageArray = storage.getItem(`library${j}`).split(",");
+      let recoverReadStatus = (storageArray[3] === "true") ? true : false;
+      library[j] = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
+    }
   }
   //draw library from the beginning
   displayLibrary(0);
