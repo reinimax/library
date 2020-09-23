@@ -8,7 +8,7 @@ const pages = document.querySelector("#pages");
 const read = document.querySelector("#read");
 
 //in this array the books will be stored
-let library = [
+let library = [  
   new Book("J.R.R. Tolkien", "The Hobbit", 300, true),
   new Book("Andrzej Sapkowski", "The Last Wish", 350, true)
 ];
@@ -37,9 +37,9 @@ try {
 So, what should happen?
   Initialize storage
   (if storage is not available, display an according message)
-  When the user adds a book, save the array to local storage
+  x When the user adds a book, save the array to local storage
   When the user deletes a book, save the array to local storage
-  When the user toggles read status, save the array to local storage
+  x When the user toggles read status, save the array to local storage
   When the site is accessed
     check if storage is empty
       if so, do nothing, or display a few sampel books
@@ -58,6 +58,7 @@ clearStorageBtn.addEventListener("click", function() {
 //functions
 function saveLibrary() {
   //turning the array into a string and saving it in storage
+  storage.clear(); //The storage is cleared first to prevent elements sticking to the end when books are deleted
   for (let i = 0; i < library.length; i++) {
     let objString = Object.values(library[i]);
     storage.setItem(`library${i}`, objString);
@@ -67,6 +68,10 @@ function saveLibrary() {
 function retrieveLibrary() {
   //turning the string back into an array with objects (if storage is empty the loop won't execute and so the original sample library will be drawn)
   for (let j = 0; j < storage.length; j++) {
+    /*this clears the library. This only exectues when storage is NOT empty. Without clearing the library, default elements would be displayed
+    when the stored library is smaller than the default one (e.g. when the user has only one book in the library, only this one should be displayed and not this one
+    plus all the default books in later indices of the library*/
+    library = [];
     let storageArray = storage.getItem(`library${j}`).split(",");
     let recoverReadStatus = (storageArray[3] === "true") ? true : false;
     library[j] = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
@@ -107,6 +112,7 @@ function displayLibrary(from) {
         cardRead.addEventListener("click", function(e) {
           library[e.target.dataset.index].toggleRead();
           cardRead.textContent = (library[e.target.dataset.index].read) ? "Read" : "Not read";
+          saveLibrary();
         });
       const cardRemove = document.createElement("button");
         cardRemove.textContent = "Remove book";
@@ -133,6 +139,7 @@ function updateLibrary(e) {
     container.childNodes[i].childNodes[4].setAttribute("data-index", i); //node 4 = remove button
     container.childNodes[i].childNodes[3].setAttribute("data-index", i); //node 3 = toggle read button
   }
+  saveLibrary();
 }
 
 //initialize Library
