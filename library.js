@@ -28,19 +28,14 @@ Book.prototype.toggleRead = function() {
 //local storage
 let storage = window.localStorage;
 
-/*
-So, what should happen?
-  Initialize storage
-  (if storage is not available, display an according message)
-  x When the user adds a book, save the array to local storage
-  x When the user deletes a book, save the array to local storage
-  x When the user toggles read status, save the array to local storage
-  When the site is accessed
-    check if storage is empty
-      if so, do nothing, or display a few sampel books
-      if it is not empty, load the storage and draw the library
-  (add an option to clear local storage?)
-*/
+//if storage is not available, display an according message
+try {
+  storage.setItem("test", "Can retrieve data from local storage");
+  console.log(storage.getItem("test"));
+  storage.removeItem("test");
+} catch {
+  console.log("Storage not availabe");
+}
 
 //events
 addBtn.addEventListener("click", addBook);
