@@ -27,18 +27,13 @@ Book.prototype.toggleRead = function() {
 
 //local storage
 let storage = window.localStorage;
-try {
-  
-} catch(err) {
-  console.log(err);
-}
 
 /*
 So, what should happen?
   Initialize storage
   (if storage is not available, display an according message)
   x When the user adds a book, save the array to local storage
-  When the user deletes a book, save the array to local storage
+  x When the user deletes a book, save the array to local storage
   x When the user toggles read status, save the array to local storage
   When the site is accessed
     check if storage is empty
@@ -66,12 +61,10 @@ function saveLibrary() {
 }
 
 function retrieveLibrary() {
+  //clear the library if the storage is shorter, so that only the storage and now sample books are displayed
+  if (storage.length > 0 && storage.length < library.length) library = []; 
   //turning the string back into an array with objects (if storage is empty the loop won't execute and so the original sample library will be drawn)
   for (let j = 0; j < storage.length; j++) {
-    /*this clears the library. This only exectues when storage is NOT empty. Without clearing the library, default elements would be displayed
-    when the stored library is smaller than the default one (e.g. when the user has only one book in the library, only this one should be displayed and not this one
-    plus all the default books in later indices of the library*/
-    library = [];
     let storageArray = storage.getItem(`library${j}`).split(",");
     let recoverReadStatus = (storageArray[3] === "true") ? true : false;
     library[j] = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
