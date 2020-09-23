@@ -1,8 +1,29 @@
+//variables
+const addBtn = document.querySelector("#addBtn");
+const clearStorageBtn = document.querySelector("#clearStorage");
+const container = document.querySelector("#container");
+const author = document.querySelector("#author");
+const title = document.querySelector("#title");
+const pages = document.querySelector("#pages");
+const read = document.querySelector("#read");
+
 //in this array the books will be stored
 let library = [
   new Book("J.R.R. Tolkien", "The Hobbit", 300, true),
   new Book("Andrzej Sapkowski", "The Last Wish", 350, true)
 ];
+
+//Book constructor and prototype
+function Book(author, title, pages, read) {
+  this.author = author;
+  this.title = title;
+  this.pages = pages;
+  this.read = read;
+}
+
+Book.prototype.toggleRead = function() {
+  this.read = (this.read) ? false : true;
+}
 
 //local storage
 let storage = window.localStorage;
@@ -26,37 +47,7 @@ So, what should happen?
   (add an option to clear local storage?)
 */
 
-function saveLibrary() {
-  //turning the array into a string and saving it in storage
-  for (let i = 0; i < library.length; i++) {
-    let objString = Object.values(library[i]);
-    storage.setItem(`library${i}`, objString);
-  }
-  console.log(storage);
-}
-
-function retrieveLibrary() {
-  //turning the string back into an array with objects
-  for (let j = 0; j < storage.length; j++) {
-    let storageArray = storage.getItem(`library${j}`).split(",");
-    let recoverReadStatus = (storageArray[3] === "true") ? true : false;
-    library[j] = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
-  }
-  //draw library from the beginning
-  displayLibrary(0);
-}
-
-
-
-//variables
-const addBtn = document.querySelector("#addBtn");
-const clearStorageBtn = document.querySelector("#clearStorage");
-const container = document.querySelector("#container");
-const author = document.querySelector("#author");
-const title = document.querySelector("#title");
-const pages = document.querySelector("#pages");
-const read = document.querySelector("#read");
-
+//events
 addBtn.addEventListener("click", addBook);
 clearStorageBtn.addEventListener("click", function() {
   storage.clear();
@@ -64,15 +55,24 @@ clearStorageBtn.addEventListener("click", function() {
   console.log(storage.length);
 });
 
-function Book(author, title, pages, read) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
-  this.read = read;
+//functions
+function saveLibrary() {
+  //turning the array into a string and saving it in storage
+  for (let i = 0; i < library.length; i++) {
+    let objString = Object.values(library[i]);
+    storage.setItem(`library${i}`, objString);
+  }
 }
 
-Book.prototype.toggleRead = function() {
-  this.read = (this.read) ? false : true;
+function retrieveLibrary() {
+  //turning the string back into an array with objects (if storage is empty the loop won't execute and so the original sample library will be drawn)
+  for (let j = 0; j < storage.length; j++) {
+    let storageArray = storage.getItem(`library${j}`).split(",");
+    let recoverReadStatus = (storageArray[3] === "true") ? true : false;
+    library[j] = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
+  }
+  //draw library from the beginning
+  displayLibrary(0);
 }
 
 function addBook() {
@@ -135,4 +135,5 @@ function updateLibrary(e) {
   }
 }
 
+//initialize Library
 retrieveLibrary();
