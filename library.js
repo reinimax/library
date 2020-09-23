@@ -23,6 +23,20 @@ for (let j = 0; j < storage.length; j++) {
 
 console.table(library);
 
+/*
+So, what should happen?
+  Initialize storage
+  (if storage is not available, display an according message)
+  When the user adds a book, save the array to local storage
+  When the user deletes a book, save the array to local storage
+  When the user toggles read status, save the array to local storage
+  When the site is accessed
+    check if storage is empty
+      if so, do nothing, or display a few sampel books
+      if it is not empty, load the storage and draw the library
+  (add an option to clear local storage?)
+*/
+
 //variables
 const addBtn = document.querySelector("#addBtn");
 const container = document.querySelector("#container");
