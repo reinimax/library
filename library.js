@@ -8,13 +8,19 @@ let library = [
 let storage = window.localStorage;
 
 //turning the array into a string
-let objString = "";
 for (let i = 0; i < library.length; i++) {
-  objString = Object.values(library[i]);
+  let objString = Object.values(library[i]);
   storage.setItem(`library${i}`, objString);
 }
-
 console.log(storage);
+
+//turning the string back into an array with objects
+let temp = storage.getItem(`library0`);
+let storageArray = temp.split(",");
+let recoverReadStatus = (storageArray[3] === "true") ? true : false;
+const tolkien = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
+console.table(tolkien);
+console.log(typeof tolkien.read);
 
 //variables
 const addBtn = document.querySelector("#addBtn");
