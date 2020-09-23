@@ -15,11 +15,15 @@ const read = document.querySelector("#read");
 addBtn.addEventListener("click", addBook);
 
 function Book(author, title, pages, read) {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.read = read;
-  }
+  this.author = author;
+  this.title = title;
+  this.pages = pages;
+  this.read = read;
+}
+
+Book.prototype.toggleRead = function() {
+  this.read = (this.read) ? false : true;
+}
 
 function addBook() {
   const newBook = new Book(
@@ -48,6 +52,11 @@ function displayLibrary(from) {
       const cardRead = document.createElement("button");
         cardRead.textContent = (library[i].read) ? "Read" : "Not read";
         cardRead.setAttribute("id", "toggle-read");
+        cardRead.setAttribute("data-index", i);
+        cardRead.addEventListener("click", function(e) {
+          library[e.target.dataset.index].toggleRead();
+          cardRead.textContent = (library[e.target.dataset.index].read) ? "Read" : "Not read";
+        });
       const cardRemove = document.createElement("button");
         cardRemove.textContent = "Remove book";
         cardRemove.setAttribute("id", "remove-btn");
@@ -70,7 +79,8 @@ function updateLibrary(e) {
   container.removeChild(container.childNodes[index]);
   //reset data-indices
   for (let i = 0; i < container.childElementCount; i++) {
-    container.childNodes[i].childNodes[4].setAttribute("data-index", i);
+    container.childNodes[i].childNodes[4].setAttribute("data-index", i); //node 4 = remove button
+    container.childNodes[i].childNodes[3].setAttribute("data-index", i); //node 3 = toggle read button
   }
 }
 
