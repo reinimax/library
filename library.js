@@ -15,12 +15,13 @@ for (let i = 0; i < library.length; i++) {
 console.log(storage);
 
 //turning the string back into an array with objects
-let temp = storage.getItem(`library0`);
-let storageArray = temp.split(",");
-let recoverReadStatus = (storageArray[3] === "true") ? true : false;
-const tolkien = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
-console.table(tolkien);
-console.log(typeof tolkien.read);
+for (let j = 0; j < storage.length; j++) {
+  let storageArray = storage.getItem(`library${j}`).split(",");
+  let recoverReadStatus = (storageArray[3] === "true") ? true : false;
+  library.push(new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus));
+}
+
+console.table(library);
 
 //variables
 const addBtn = document.querySelector("#addBtn");
