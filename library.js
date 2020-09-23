@@ -4,6 +4,18 @@ let library = [
   new Book("Andrzej Sapkowski", "The Last Wish", 350, true)
 ];
 
+//local storage
+let storage = window.localStorage;
+
+//turning the array into a string
+let objString = "";
+for (let i = 0; i < library.length; i++) {
+  objString = Object.values(library[i]);
+  storage.setItem(`library${i}`, objString);
+}
+
+console.log(storage);
+
 //variables
 const addBtn = document.querySelector("#addBtn");
 const container = document.querySelector("#container");
