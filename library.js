@@ -6,22 +6,11 @@ let library = [
 
 //local storage
 let storage = window.localStorage;
-
-//turning the array into a string
-for (let i = 0; i < library.length; i++) {
-  let objString = Object.values(library[i]);
-  storage.setItem(`library${i}`, objString);
+try {
+  
+} catch(err) {
+  console.log(err);
 }
-console.log(storage);
-
-//turning the string back into an array with objects
-for (let j = 0; j < storage.length; j++) {
-  let storageArray = storage.getItem(`library${j}`).split(",");
-  let recoverReadStatus = (storageArray[3] === "true") ? true : false;
-  library.push(new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus));
-}
-
-console.table(library);
 
 /*
 So, what should happen?
@@ -37,8 +26,30 @@ So, what should happen?
   (add an option to clear local storage?)
 */
 
+function saveLibrary() {
+  //turning the array into a string and saving it in storage
+  for (let i = 0; i < library.length; i++) {
+    let objString = Object.values(library[i]);
+    storage.setItem(`library${i}`, objString);
+  }
+  console.log(storage);
+}
+
+function retrieveLibrary() {
+  //turning the string back into an array with objects
+  for (let j = 0; j < storage.length; j++) {
+    let storageArray = storage.getItem(`library${j}`).split(",");
+    let recoverReadStatus = (storageArray[3] === "true") ? true : false;
+    library[j] = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
+  }
+  console.table(library);
+}
+
+
+
 //variables
 const addBtn = document.querySelector("#addBtn");
+const clearStorageBtn = document.querySelector("#clearStorage");
 const container = document.querySelector("#container");
 const author = document.querySelector("#author");
 const title = document.querySelector("#title");
@@ -46,6 +57,11 @@ const pages = document.querySelector("#pages");
 const read = document.querySelector("#read");
 
 addBtn.addEventListener("click", addBook);
+clearStorageBtn.addEventListener("click", function() {
+  storage.clear();
+  console.log(storage);
+  console.log(storage.length);
+});
 
 function Book(author, title, pages, read) {
   this.author = author;
@@ -67,6 +83,7 @@ function addBook() {
   );
   library.push(newBook);
   displayLibrary(library.length-1);
+  saveLibrary();
 }
 
 function displayLibrary(from) {
