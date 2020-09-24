@@ -1,6 +1,7 @@
 //variables
 const addBtn = document.querySelector("#addBtn");
 const clearStorageBtn = document.querySelector("#clearStorage");
+const info = document.querySelector("#info");
 const container = document.querySelector("#container");
 const author = document.querySelector("#author");
 const title = document.querySelector("#title");
@@ -33,9 +34,12 @@ try {
   storage.setItem("test", "Can retrieve data from local storage");
   console.log(storage.getItem("test"));
   storage.removeItem("test");
+  info.textContent += " Your changes will be stored locally";
 } catch {
   console.log("Storage not availabe");
   storageAvailable = false;
+  info.textContent += " Local storage is disabled. Your changes will not be saved!";
+  clearStorageBtn.disabled = true;
 }
 
 //events
