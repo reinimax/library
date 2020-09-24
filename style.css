@@ -13,7 +13,7 @@
     margin: 30px; 
     padding: 20px;
     width: 150px;
-    height: 250px;
+    min-height: 250px;
     background-color: rgb(147, 160, 187);
     color:rgb(37, 34, 10);
     font-family: 'Grenze Gotisch', cursive;
