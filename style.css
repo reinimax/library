@@ -6,11 +6,13 @@
 
 .card {
     border: solid 1px black;
-    border-radius: 10px; 
+    border-radius: 10px;
+    box-shadow: 2px 2px 15px currentColor;
     margin: 30px; 
     padding: 20px;
     width: 150px;
     height: 250px;
+    background-color: rgb(147, 160, 187);
 }
 
 .card-content {
@@ -29,4 +31,22 @@
 #remove-btn {
     width: 120px;
     margin-left: 15px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 40px;
+    background-color: rgb(30, 59, 116);
+    padding: 15px;
+    color: whitesmoke;
+}
+
+#fields {
+    background-color: rgb(36, 56, 95);
+    color: whitesmoke;
+    padding: 15px;
+}
+
+body {
+    background-color: rgb(82, 99, 133);
 }
