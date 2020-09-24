@@ -10,8 +10,10 @@ const read = document.querySelector("#read");
 
 //in this array the books will be stored
 let library = [  
-  new Book("J.R.R. Tolkien", "The Hobbit", 300, true),
-  new Book("Andrzej Sapkowski", "The Last Wish", 350, true)
+  new Book("J.R.R. Tolkien", "The Hobbit: Or, There and Back Again", 333, true),
+  new Book("Andrzej Sapkowski", "The Last Wish", 352, true),
+  new Book("Shakespeare", "Hamlet", 342, false),
+  new Book("Aristotle", "The Nicomachean Ethics", 400, true)
 ];
 
 //Book constructor and prototype
@@ -54,7 +56,7 @@ function saveLibrary() {
   if (storageAvailable) {
     storage.clear(); //The storage is cleared first to prevent elements sticking to the end when books are deleted
     for (let i = 0; i < library.length; i++) {
-      let objString = Object.values(library[i]);
+      let objString = (Object.values(library[i])).join("*|*");
       storage.setItem(`library${i}`, objString);
     }
   }
@@ -66,7 +68,7 @@ function retrieveLibrary() {
     if (storage.length > 0 && storage.length < library.length) library = []; 
     //turning the string back into an array with objects (if storage is empty the loop won't execute and so the original sample library will be drawn)
     for (let j = 0; j < storage.length; j++) {
-      let storageArray = storage.getItem(`library${j}`).split(",");
+      let storageArray = storage.getItem(`library${j}`).split("*|*");
       let recoverReadStatus = (storageArray[3] === "true") ? true : false;
       library[j] = new Book(storageArray[0],storageArray[1],storageArray[2],recoverReadStatus);
     }
