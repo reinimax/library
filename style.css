@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Grenze&family=Grenze+Gotisch:wght@300&display=swap');
+
 #container {
     display: flex;
     width: 90vw;
@@ -43,13 +44,16 @@ h1 {
     font-size: 40px;
     background-color: rgb(30, 59, 116);
     padding: 15px;
-    color: whitesmoke;
     font-family: 'Alfa Slab One', cursive;
+}
+
+#info {
+    background-color: rgb(29, 49, 92);
+    padding: 15px;
 }
 
 #fields {
     background-color: rgb(36, 56, 95);
-    color: whitesmoke;
     padding: 15px;
 }
 
