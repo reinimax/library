@@ -34,7 +34,7 @@ try {
   storage.setItem("test", "Can retrieve data from local storage");
   console.log(storage.getItem("test"));
   storage.removeItem("test");
-  info.textContent += " Your changes will be stored locally";
+  info.textContent += " Your changes will be stored locally.";
 } catch {
   console.log("Storage not availabe");
   storageAvailable = false;
