@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grenze&family=Grenze+Gotisch:wght@300&display=swap');
 #container {
     display: flex;
     width: 90vw;
@@ -7,17 +9,20 @@
 .card {
     border: solid 1px black;
     border-radius: 10px;
-    box-shadow: 2px 2px 15px currentColor;
+    box-shadow: 5px 5px 15px rgb(49, 49, 49);
     margin: 30px; 
     padding: 20px;
     width: 150px;
     height: 250px;
     background-color: rgb(147, 160, 187);
+    color:rgb(37, 34, 10);
+    font-family: 'Grenze Gotisch', cursive;
+    font-size: 24px;
 }
 
 .card-content {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
 }
 
 #toggle-read {
@@ -39,6 +44,7 @@ h1 {
     background-color: rgb(30, 59, 116);
     padding: 15px;
     color: whitesmoke;
+    font-family: 'Alfa Slab One', cursive;
 }
 
 #fields {
@@ -49,4 +55,7 @@ h1 {
 
 body {
     background-color: rgb(82, 99, 133);
+    color: whitesmoke;
+    font-family: 'Grenze', serif;
+    font-size: 20px;;
 }
