@@ -85,6 +85,10 @@ function addBook() {
   library.push(newBook);
   displayLibrary(library.length-1);
   saveLibrary();
+  author.value = "";
+  title.value = "";
+  pages.value = "";
+  read.checked = false;
 }
 
 function displayLibrary(from) {
