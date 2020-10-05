@@ -8,6 +8,21 @@ const title = document.querySelector("#title");
 const pages = document.querySelector("#pages");
 const read = document.querySelector("#read");
 
+//Book class
+class Book {
+  
+  constructor(author, title, pages, read) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.read = read;
+  }
+  
+  toggleRead() {
+    this.read = (this.read) ? false : true;
+  }
+}
+
 //in this array the books will be stored
 let library = [  
   new Book("J.R.R. Tolkien", "The Hobbit: Or, There and Back Again", 333, true),
@@ -15,18 +30,6 @@ let library = [
   new Book("Shakespeare", "Hamlet", 342, false),
   new Book("Aristotle", "The Nicomachean Ethics", 400, true)
 ];
-
-//Book constructor and prototype
-function Book(author, title, pages, read) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
-  this.read = read;
-}
-
-Book.prototype.toggleRead = function() {
-  this.read = (this.read) ? false : true;
-}
 
 //local storage
 let storageAvailable = true;
