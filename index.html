@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <link href="reset.css" rel="stylesheet">
-  <link href="style.css" rel="stylesheet">
-  <title>Library</title>
-</head>
-<body>
-  <h1>Library</h1>
-  <p id ="info">Add your books via the form below.</p>
-  <div id="fields">
-    <label for="author">Author:</label>
-    <input size="30" id="author" placeholder="Author">
-    <label for="title">Title:</label>
-    <input size="30" id="title" placeholder="Title">
-    <label for="pages">Number of pages:</label>
-    <input size="3" id="pages" placeholder="0">
-    <label for="read">Already read?</label>
-    <input type="checkbox" id="read">
-    <button id="addBtn">Add book</button>
-    <button id="clearStorage">Clear local storage</button>
-  </div>
-  <div id="container"></div>
-  <script src="library.js"></script>
-</body>
+  <head>
+    <meta charset="utf-8" />
+    <link href="reset.css" rel="stylesheet" />
+    <link href="style.css" rel="stylesheet" />
+    <title>Library</title>
+  </head>
+  <body>
+    <h1>Library</h1>
+    <p id="info">Add your books via the form below.</p>
+    <form id="fields">
+      <label for="author">Author:</label>
+      <input size="30" id="author" placeholder="Author" required />
+      <label for="title">Title:</label>
+      <input size="30" id="title" placeholder="Title" required />
+      <label for="pages">Number of pages:</label>
+      <input
+        type="number"
+        min="1"
+        max="9999"
+        size="3"
+        id="pages"
+        placeholder="0"
+        required
+      />
+      <label for="read">Already read?</label>
+      <input type="checkbox" id="read" />
+      <button id="addBtn">Add book</button>
+      <button id="clearStorage">Clear local storage</button>
+    </form>
+    <div id="container"></div>
+    <script src="library.js"></script>
+  </body>
 </html>
